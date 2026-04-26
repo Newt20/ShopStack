@@ -10,7 +10,7 @@ interface Product {
   image?: string;
 }
 
-export default function ProductList() {
+export default function (){
   const { userId } = useAuth();
   const [products, setProducts] = useState<Product[]>([]);
 
