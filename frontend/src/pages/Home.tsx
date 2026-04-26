@@ -1,6 +1,6 @@
 import ProductList from "../components/ProductList";
 
-export default function Home({ userId }: { userId: string }) {
+export default function Home() {
   return (
     <div>
       <section className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white text-center rounded-lg py-20">
@@ -13,7 +13,7 @@ export default function Home({ userId }: { userId: string }) {
 
       <section className="max-w-7xl mx-auto px-6 py-12">
         <h2 className="text-3xl font-bold mb-8 text-gray-800">Featured Products</h2>
-        <ProductList userId={userId} />
+        <ProductList />
       </section>
     </div>
   );
