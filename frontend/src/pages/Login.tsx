@@ -18,7 +18,7 @@ export default function Login() {
       alert(`Welcome ${res.data.name}!`);
       navigate("/");
     } catch (err: any) {
-      console.error("Login Error". err);
+      console.error(err);
       alert("Login failed");
     }
   };
