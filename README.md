@@ -1,6 +1,7 @@
 # ShopStack
 
 ### FrontEnd
+```js
 sudo apt update && sudo apt upgrade -y
 sudo apt install nginx openssl -y
 git clone https://github.com/Newt20/ShopStack.git
@@ -20,9 +21,11 @@ sudo systemctl enable nginx
 sudo systemctl status nginx
 sudo systemctl reload nginx
 sudo nginx -t
+```
 
 
 ### BackEnd
+```js
 sudo apt update && sudo apt upgrade -y
 git clone https://github.com/Newt20/ShopStack.git
 cd ShopStack/backend
@@ -41,9 +44,11 @@ sudo systemctl status mongod
 
 npm install express mongoose dotenv cors
 pm2 start server.js --name shopstack-backend
+```
 
 
 ### conf file
+```js
 server {
     listen 80;
     server_name _;
@@ -70,3 +75,4 @@ server {
         proxy_set_header X-Real-IP $remote_addr;
     }
 }
+```
