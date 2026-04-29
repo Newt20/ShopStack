@@ -38,6 +38,7 @@ sudo apt-get install mongodb-enterprise -y
 sudo systemctl enable mongod
 sudo systemctl start mongod
 sudo systemctl status mongod
+
 npm install express mongoose dotenv cors
 pm2 start server.js --name shopstack-backend
 
