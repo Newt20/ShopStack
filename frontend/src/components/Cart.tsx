@@ -17,7 +17,7 @@ export default function Cart() {
 
   useEffect(() => {
     if (!userId) return;
-    axios.get(`http://localhost:5000/api/cart/${userId}`)
+    axios.get(`/api/cart/${userId}`)
       .then(res => setCart(res.data))
       .catch(err => console.error(err));
   }, [userId]);
