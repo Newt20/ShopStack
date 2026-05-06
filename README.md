@@ -25,7 +25,7 @@ sudo nginx -t
 
 
 ### BackEnd
-##### bash file for ubuntu 22.04 + MongoDB 7.0 + Nvm + PM2
+##### bash file for ubuntu 22.04, 24.04 + MongoDB 7.0 + Nvm + PM2
 ```js
 vi setup-backend.sh
 chmod +x setup-backend.sh
@@ -37,7 +37,7 @@ chmod +x setup-backend.sh
 set -e
 
 # Update system
-sudo apt-get update && sudo apt upgrade -y
+sudo apt-get update && sudo apt-get upgrade -y
 
 # Install prerequisites
 sudo apt-get install -y gnupg curl git build-essential
@@ -46,7 +46,7 @@ sudo apt-get install -y gnupg curl git build-essential
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" 
 
 source ~/.bashrc
@@ -77,7 +77,7 @@ if [ -f ".env.example" ]; then
   echo "✅ .env file created from .env.example"
 fi
 
-# Add MongoDB 7.0 repo (Ubuntu 22.04 Jammy)
+# Add MongoDB 7.0 repo 
 curl -fsSL https://pgp.mongodb.com/server-7.0.asc | \
   sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg --dearmor
 
