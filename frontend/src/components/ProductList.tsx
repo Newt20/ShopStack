@@ -15,7 +15,7 @@ export default function (){
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/products")
+    axios.get("/api/products")
       .then(res => setProducts(res.data))
       .catch(err => console.error(err));
   }, []);
@@ -25,7 +25,7 @@ export default function (){
       alert("Please login first!");
       return;
     }
-    await axios.post("http://localhost:5000/api/cart/add", { userId, productId, quantity: 1 });
+    await axios.post("/api/cart/add", { userId, productId, quantity: 1 });
     alert("Added to cart!");
   };
 
