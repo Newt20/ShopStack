@@ -25,25 +25,89 @@ sudo nginx -t
 
 
 ### BackEnd
+##### bash file for ubuntu 22.04 + MongoDB 7.0 + Nvm + PM2
 ```js
-sudo apt update && sudo apt upgrade -y
+vi setup-backend.sh
+chmod +x setup-backend.sh
+./setup-backend.sh
+
+-----------------
+
+#!/bin/bash
+set -e
+
+# Update system
+sudo apt-get update && sudo apt upgrade -y
+
+# Install prerequisites
+sudo apt-get install -y gnupg curl git build-essential
+
+# Install NVM
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+
+source ~/.bashrc
+
+# Install the latest Node 20.x (>=20.19.0)
+nvm install 20.19.0
+nvm use 20.19.0
+nvm alias default 20.19.0
+
+
+# Verify
+node -v   # should show v20.19.0
+npm -v    # should show a compatible npm version
+
+# Install PM2 globally
+npm install -g pm2
+
+# Clone ShopStack repo
 git clone https://github.com/Newt20/ShopStack.git
 cd ShopStack/backend
-sudo apt install npm -y
-npm install
-sudo npm install -g pm2
-sudo apt-get install gnupg curl
-curl -fsSL https://pgp.mongodb.com/server-8.0.asc | sudo gpg -o /usr/share/keyrings/mongodb-server-8.0.gpg    --dearmor
-echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg ] https://repo.mongodb.com/apt/ubuntu noble/mongodb-enterprise/8.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-enterprise-8.2.list
-sudo apt-get update
-sudo apt-get install mongodb-enterprise -y
 
+# Install backend dependencies (explicitly include mongoose etc.)
+npm install express mongoose dotenv cors
+
+# Copy example env file to .env
+if [ -f ".env.example" ]; then
+  mv .env.example .env
+  echo "✅ .env file created from .env.example"
+fi
+
+# Add MongoDB 7.0 repo (Ubuntu 22.04 Jammy)
+curl -fsSL https://pgp.mongodb.com/server-7.0.asc | \
+  sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg --dearmor
+
+echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] \
+https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | \
+sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+
+# Install MongoDB 7.0
+sudo apt-get update
+sudo apt-get install -y mongodb-org
+
+# Ensure directories exist
+sudo mkdir -p /var/lib/mongodb /var/log/mongodb
+sudo chown -R mongodb:mongodb /var/lib/mongodb /var/log/mongodb
+
+# Enable and start MongoDB
 sudo systemctl enable mongod
 sudo systemctl start mongod
-sudo systemctl status mongod
+sudo systemctl status mongod --no-pager
 
-npm install express mongoose dotenv cors
+# Seed the database (only once on fresh setup)
+if [ -f "seed.js" ]; then
+  echo "🌱 Seeding database..."
+  node seed.js
+  echo "✅ Database seeded successfully."
+fi
+
+# Start backend with PM2
 pm2 start server.js --name shopstack-backend
+pm2 save
+pm2 startup systemd -u $USER --hp $HOME
+
+echo "✅ Backend setup complete. Node.js 20 via NVM, MongoDB 7.0 running, ShopStack backend seeded and managed by PM2."
+
 ```
 
 
