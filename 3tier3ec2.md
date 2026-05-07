@@ -334,31 +334,43 @@ echo "✅ MongoDB 7.0 installed and bound to private IP: $PRIVATE_IP"
 ### 12. Internet Gateway
 ![igw-vpc-attached](Images/igw-vpc-attached.png)
 
-### 13. Public EC2
-![public-ec2](Images/public-ec2.png)
+### 13. Public Security Group Final
+![public-sg-final](Images/public-sg-final.png)
 
-### 14. Private EC2
-![private-ec2](Images/private-ec2.png)
+### 14. Private Security Group Inbound Final
+![private-sg-final-in](Images/private-sg-final-in.png)
 
-### 15. DB EC2
-![db-ec2](Images/db-ec2.png)
+### 15. Private Security Group Out-bound Final
+![private-sg-final-out](Images/private-sg-final-out.png)
 
-### 16. Curl from FrontEnd EC2 to get data from DB EC2 through api(backend).
+### 16. DataBase Security Group Final
+![private-db-sg-final](Images/private-db-sg-final.png)
+
+### 17. Public EC2 Final
+![public-ec2](Images/public-ec2-final.png)
+
+### 18. Private EC2 Final
+![private-ec2](Images/private-ec2-final.png)
+
+### 19. DB EC2 Final
+![db-ec2](Images/private-ec2-db-final.png)
+
+### 20. Curl from FrontEnd EC2 to get data from DB EC2 through api(backend).
 ![frontend_getting_data_through_backend](Images/frontend_getting_data_through_backend.png)
 
-### 17. BackEnd EC2 connected to DB EC2
+### 21. BackEnd EC2 connected to DB EC2
 ![Backend_to_db_connectivity_cli](Images/Backend_to_db_connectivity_cli.png)
 
-### 18. FrontEnd
+### 22. FrontEnd
 ![FrontEnd](Images/FrontEnd.png)
 
-### 19. Logging In
+### 24. Logging In
 ![Logging-in](Images/Logging-in.png)
 
-### 20. Adding to Cart
+### 25. Adding to Cart
 ![AddingToCart](Images/AddingToCart.png)
 
-### 21. Cart
+### 26. Cart
 ![Cart](Images/Cart.png)
 
 ---
