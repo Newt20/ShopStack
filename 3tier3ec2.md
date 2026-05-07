@@ -43,7 +43,11 @@ This project demonstrates deploying a full‑stack e‑commerce application (**S
 
 3. **Configure Route Tables**
    - Public subnet → Internet Gateway
-   - Private subnets → Nat Gateway initially used to setup the EC2s with necessary codes, then removed. No IGW.
+   - Private subnets → No Nat Gateway.
+
+  Initial Setup required allowing more access in the Security Groups, they are removed after all configurations are done.
+  No Nat gateway for Private EC2s. EC2s communicate through Security Groups so even if IPs change no issues occur. 
+  Routes are made strict. FrontEnd to BackEnd, BackEnd to DB. only specific ports and for specific Security Group.
 
 ---
 
@@ -371,7 +375,7 @@ flowchart TD
     BackendEC2 --> DatabaseEC2
 ```
 
-## 🔐 Security Group Relationships (Fixed)
+## 🔐 Security Group Relationships
 
 ```mermaid
 flowchart LR
