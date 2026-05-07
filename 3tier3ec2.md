@@ -1,5 +1,19 @@
 # ShopStack 3‑Tier Deployment on AWS EC2
 
+## 📑 Table of Contents
+- [Overview](#-overview)
+- [Architecture Setup](#-architecture-setup)
+- [Setup Steps](#-setup-steps)
+- [Configuration Steps](#-configuration-steps)
+  - [Frontend EC2 (Nginx + SSL)](#frontend-ec2-nginx--ssl)
+  - [NGINX Conf File](#nginx-conf-file)
+  - [Backend EC2 (Expressjs--pm2)](#backend-ec2-expressjs--pm2)
+  - [Database EC2 (MongoDB-70)](#database-ec2-mongodb-70)
+- [Screenshots](#-screenshots)
+- [Architecture Diagram](#-architecture-diagram)
+- [Security Group Relationships](#-security-group-relationships)
+
+
 ## 📖 Overview
 This project demonstrates deploying a full‑stack e‑commerce application (**ShopStack**) using a **3‑tier architecture** on AWS EC2:
 
